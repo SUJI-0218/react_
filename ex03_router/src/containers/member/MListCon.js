@@ -4,28 +4,37 @@ import {getList} from "../../service/member/member"
 import { useNavigate } from "react-router-dom";
 const MListCon = () => {
     const navigate = useNavigate()
-    console.log( getList() )
+    // console.log(getList())
     const [list, setList] = useState([])
-    //setList( getList() )
+    // setList(getList())
     const [num, setNum] = useState(0)
-    useEffect( ()=>{
+    useEffect( () => {
         console.log("useEffect")
+        // setNum(num+1)
         const getData = async () => {
             const data = await getList()
-            setList( data )
+            setList("data : ", data)
+            console.log(data)
         }
-        //getData()
+        // getData()
         getList()
-        .then( data => setList( data ) )
-        //setList( getList() )
-    },[])
-    const onClick = ( id ) => {
+        .then(data => setList(data))
+        
+        // console.log("getList() : ", getList())
+        // getList()
+        // .then(res=>res.json())
+        // .then(data=>setList(data))
+
+        // setList(getList())
+    },[]) //의존성. 아무값도 없으면 렌더링 될때만 실행. 값이 있으면 특정 값이 변경 될때마다 effect가 다시 실행됨. 나중에 DB연결하면 의존성 추가하면 됨
+    const onClick = (id) => {
         navigate("/member/delete/"+id)
         alert("삭제 완료")
     }
     return (<>
         {console.log("랜더링 종료")}
-        <MListCom onClick={onClick} list={list} />
+        <MListCom onClick={onClick} list={list}/>
     </>)
 }
+
 export default MListCon
