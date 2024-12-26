@@ -7,7 +7,7 @@ export const AuthProvider = ( {children} ) => {
 
     const loginState = () => { //app에서 호출할 예정 > session Storage에 있는 값이 
         const state = JSON.parse( sessionStorage.getItem("auth") )
-        setAuth( state )
+        setAuth( state ) //sessionStorage만 쓰게 되면 값이 저장이 안되서 로그인과 로그아웃 변경이 안될 수도있음으로 setAuth( state )를 쓴다.
     }
 
     const successLogin = ( user ) => {
